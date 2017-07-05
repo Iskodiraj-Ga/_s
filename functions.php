@@ -1,6 +1,6 @@
 <?php
 /**
- * _s functions and definitions.
+ * _s functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -44,7 +44,7 @@ function _s_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', '_s' ),
+		'menu-1' => esc_html__( 'Primary', '_s' ),
 	) );
 
 	/*
@@ -64,6 +64,21 @@ function _s_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+	// Add theme support for selective refresh for widgets.
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	/**
+	 * Add support for core custom logo.
+	 *
+	 * @link https://codex.wordpress.org/Theme_Logo
+	 */
+	add_theme_support( 'custom-logo', array(
+		'height'      => 250,
+		'width'       => 250,
+		'flex-width'  => true,
+		'flex-height' => true,
+	) );
 }
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
@@ -125,9 +140,9 @@ require get_template_directory() . '/inc/custom-header.php';
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
- * Custom functions that act independently of the theme templates.
+ * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/extras.php';
+require get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Recommend the Kirki plugin
