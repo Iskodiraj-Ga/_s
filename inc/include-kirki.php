@@ -8,7 +8,7 @@
 
 // No need to proceed if Kirki already exists.
 if ( class_exists( 'Kirki' ) ) {
-    return;
+	return;
 }
 
 if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'Kirki_Installer_Section' ) ) {
@@ -36,25 +36,25 @@ if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'Kirki_Installer_
 			// Determine if the plugin is not installed, or just inactive.
 			$plugins   = get_plugins();
 			$installed = false;
-            $plugin_path = 'kirki/kirki.php';
+			$plugin_path = 'kirki/kirki.php';
 			foreach ( $plugins as $path => $plugin ) {
 				if ( 'Kirki' === $plugin['Name'] || 'Kirki Toolkit' === $plugin['Name'] ) {
 					$installed   = true;
-                    $plugin_path = $path;
+					$plugin_path = $path;
 				}
 			}
 			// Get the plugin-installation URL.            
 			$plugin_install_url = wp_nonce_url( add_query_arg(
-                array(
+				array(
 					'action' => 'install-plugin',
 					'plugin' => 'kirki',
 				),
 				self_admin_url( 'update.php' )
 			), 'install-plugin_kirki' );
-            
-            // Get the plugin-activation URL.
-            $plugin_activate_url = wp_nonce_url( add_query_arg(
-                array(
+			
+			// Get the plugin-activation URL.
+			$plugin_activate_url = wp_nonce_url( add_query_arg(
+				array(
 					'action' => 'activate',
 					'plugin' => $plugin_path,
 				),
